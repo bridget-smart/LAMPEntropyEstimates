@@ -9,7 +9,7 @@ import pandas as pd
 import pickle
 from itertools import groupby
 
-from other_functions import *
+from helpful_functions import *
 from lamp_specific_ent_functions import *
 from entropy_markov_function import *
 
@@ -67,7 +67,7 @@ def filter_data(data_mapped, data_flag, min_occurances,checkpoint_filepath):
     '''
 
     # file doesn't exist
-    if not check_function_existance(checkpoint_filepath,f'{data_flag}_filtered_mapped_data.pkl'):
+    if not check_function_existence(checkpoint_filepath,f'{data_flag}_filtered_mapped_data.pkl'):
         v,c = np.unique(flatten(data_mapped), return_counts=True)
         replacement_val = 2*np.max(v) # we set this to be outside the vocab size so it is an additional character
         to_replace = set(v[c<=min_occurances]) # we replace values which occur less than 10 times for all datasets except for  the lastfm dataset where min_occurances = 50.
@@ -110,7 +110,7 @@ def read_brightkite(data_path, min_occurances, checkpoint_filepath):
     which the user has checked into.
     '''
 
-    if not check_function_existance(checkpoint_filepath,'brightkite_filtered_mapped_data.pkl'):
+    if not check_function_existence(checkpoint_filepath,'brightkite_filtered_mapped_data.pkl'):
         data_bk = pd.read_csv(f'{data_path}loc-brightkite_totalCheckins.txt', sep='\t', header=None)
         data_bk.columns = ['users','time','lat','lon','loc_id']
 
@@ -133,7 +133,7 @@ def read_brightkite(data_path, min_occurances, checkpoint_filepath):
 
 
 def read_lastfm(data_path, min_occurances, checkpoint_filepath):
-    if not check_function_existance(checkpoint_filepath,'lastfm_filtered_mapped_data.pkl'):
+    if not check_function_existence(checkpoint_filepath,'lastfm_filtered_mapped_data.pkl'):
         data_lfm = pd.read_csv(f'{data_path}lastfm-dataset-1K/userid-timestamp-artid-artname-traid-traname.tsv', sep='\t',
                 on_bad_lines = 'skip', header=None)
         data_lfm.columns = ['userid','timestamp','musicbrainz_artist_id','artist_name','musicbrainz_track_id','track_name']
@@ -157,7 +157,7 @@ def read_lastfm(data_path, min_occurances, checkpoint_filepath):
 
 
 def read_wikispeedia(data_path, min_occurances, checkpoint_filepath):
-    if not check_function_existance(checkpoint_filepath,'wikispeedia_filtered_mapped_data.pkl'):
+    if not check_function_existence(checkpoint_filepath,'wikispeedia_filtered_mapped_data.pkl'):
         with open('data/wiki_paths.txt', 'r') as f:
             wiki_paths = [x.replace("\n","").split(";") for x in f.readlines()]
 
@@ -176,7 +176,7 @@ def read_wikispeedia(data_path, min_occurances, checkpoint_filepath):
 
 
 def read_reuters(data_path, min_occurances, checkpoint_filepath):
-    if not check_function_existance(checkpoint_filepath,'reuters_filtered_mapped_data.pkl'):
+    if not check_function_existence(checkpoint_filepath,'reuters_filtered_mapped_data.pkl'):
         data_path_r = data_path+'reuters/training/'
         files_train = [data_path_r+f for f in listdir(data_path_r)]
 

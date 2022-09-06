@@ -12,7 +12,7 @@ from sklearn.preprocessing import normalize
 from scipy.sparse.linalg import eigs
 from os import listdir
 
-from other_functions import *
+from helpful_functions import *
 
 
 def fit_to_markov_sparse(data_mapped, n):
