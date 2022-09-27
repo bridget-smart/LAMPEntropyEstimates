@@ -204,7 +204,6 @@ def read_reuters(data_path, min_occurances, checkpoint_filepath):
         with open(f'{checkpoint_filepath}reuters_filtered_mapped_data.pkl','rb') as f:
             data_mapped = pickle.load(f)
             n = len(np.unique([x for y in data_mapped for x in y]))
-
     return data_mapped, n
 
 def read_data(tag, data_path, min_occurances, checkpoint_filepath):

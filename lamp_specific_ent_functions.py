@@ -13,7 +13,7 @@ import networkx as nx
 from sklearn.preprocessing import normalize
 
 from entropy_markov_function import *
-from other_functions import *
+from helpful_functions import *
 from data_processing import *
 
 
