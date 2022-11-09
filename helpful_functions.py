@@ -27,13 +27,16 @@ def flatten(data):
         return data
 
 
-def get_shannon(seq):
+def get_shannon(list_values):
     '''
-    Function to get a Shannon Entropy estimate from a stationary distribution 
+    Function to get a Shannon Entropy estimate from a distribution 
     using - \sum_x p(x) log p(x).
+
+    These probabilities are calculated using frequencies in the input
+    values given in list_values.
     '''
-    v, c = np.unique(seq, return_counts=True)
-    n = len(seq)
+    v, c = np.unique(list_values, return_counts=True)
+    n = len(list_values)
     p = c / n
 
     non_zero = p[p != 0]

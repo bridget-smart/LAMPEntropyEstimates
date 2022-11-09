@@ -237,11 +237,17 @@ def run_estimates(tag, results_filepath, data_path, min_occurances, checkpoint_f
     data_mapped, n = read_data(tag,data_path, min_occurances, checkpoint_filepath)
 
     ## SHANNON ESTIMATORS
+
+    # first, sequence level estimator. This estimator only considers frequency over the entire 
+    # set of subsequences to estimate probabilities and form the Shannon estimate.
     seq = [y for x in data_mapped for y in x]
     shann_sequence = get_shannon(seq)
     np.save( f"{results_filepath}{tag}_shann_sequence_level.npy", [[shann_sequence]])
 
 
+    # second, path level estimator. This takes the mean of the estimates formed from each subsequence,
+    # considering the frequency within each subsequences to estimate probabilities and form the Shannon estimate.
+    # taking the mean of these estimates can help convergence and retain subsequence level data.
     shann_av_path = np.mean([get_shannon(x) for x in data_mapped])
     np.save( f"{results_filepath}{tag}_shann_av_path.npy", [[shann_av_path]])
 
