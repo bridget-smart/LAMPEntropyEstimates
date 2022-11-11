@@ -1,6 +1,6 @@
 #  Linear Additive Markov Process (LAMP) Entropy Evaluations
 
-This repo contains implementation of code to get entropy estimates from the paper **PAPER LINK TO BE ADDED**.
+This repo contains implementation of code to get entropy estimates from the paper The entropy rate of Linear Additive Markov Processes (submitted with pre-print available at https://arxiv.org/abs/2211.05350).
 
 To run this code you need to:
 
